@@ -6,9 +6,9 @@
  *  
  * ***************************************************/
 
-require_once('conexao.php');
+ require_once('conexao_cadastro.php');
 
-require_once('../modulo/config.php');
+require_once('../modulo/config2.php');
 
 //declaração de variaveis
 $modo = (string) null;
@@ -27,7 +27,7 @@ if(isset($_GET['modo']) && isset($_GET['id'])){
     if($modo == 'EXCLUIR'){
 
 
-        $sql = "delete from livros where  id_livro = " . $id;
+        $sql = "delete from tblusuario where idusuario = " . $id;
 
         $conexao = conexaoMysql();
 

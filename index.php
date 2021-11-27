@@ -1,22 +1,22 @@
 <?php 
     
     // import do arquivo para conectar no BD
-    require_once('bd/conexao.php');
+    require_once('bd2/conexao_cadastro.php');
     //Abre a conexão com o BD e guarda na variavel local $conexao    
     $conexao = conexaoMysql();
 
     //Declaração de Variaveis
     $modo = (string) null;
     $id = (int) 0;
-    $nome_livro = (string) null;
-    $qts_de_pag = (string) null;
-    $capa_dura = (string) null;
-    $preco = (string) null;
-    $categoria = (string) null;
+    $nome = (string) null;
+    $login = (string) null;
+    $nickName = (string) null;
+    $senha = (string) null;
+    $email = (string) null;
 
     //Essa variavel será utilizada no action do form, para diferenciar as ações de
     //inserir um novo registro ou atualizar um registro existente
-    $action = (string) "bd/inserirUsuario.php";
+    $action = (string) "bd2/inserirUsuario.php";
 
     //Valida se existe a variavel modo e a variavel id na url do 
     //navegador, se existir é pq foi clicado no botão editar
@@ -32,7 +32,7 @@
         if($modo == 'EDITAR')
         {
             //Script para buscar no BD
-            $sql = "select * from livros where id_livro=".$id;
+            $sql = "select * from tblusuario where idusuario=".$id;
             
             //Executa o script no BD
             $select = mysqli_query($conexao, $sql);
@@ -42,14 +42,14 @@
             if($arrayRegistro = mysqli_fetch_assoc($select))
             {
                 //Recebe os dados do BD e guarda em variaveis locais
-                $nome_livro = $arrayRegistro['nome_livro'];
-                $qts_de_pag = $arrayRegistro['qts_de_pag'];
-                $capa_dura = $arrayRegistro['capa_dura'];
-                $preco = $arrayRegistro['preco'];
-                $categoria = $arrayRegistro['categoria'];
+                $nome = $arrayRegistro['nome'];
+                $login = $arrayRegistro['login'];
+                $nickName = $arrayRegistro['nickname'];
+                $senha = $arrayRegistro['senha'];
+                $email = $arrayRegistro['email'];
 
                 //Altera o arquivo que será chamado pelo form, pois precisamos editar os dados
-                $action = "bd/editarUsuario.php?id=".$id;
+                $action = "bd2/editarUsuario.php?id=".$id;
                 
 
             }
@@ -59,7 +59,6 @@
 ?>
 
 <!DOCTYPE>
-
 
 <html lang="pt-br">
 
@@ -92,13 +91,14 @@
                 <li><a href="teste.html">Cartão fidelidade</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="ajuda.html">Ajuda</a></li>
+                <li><a href="login.html">Login</a></li>
                 
             </ul>
         </nav>
     </header>
     <head>
         <meta charset="UTF-8">
-        
+        <title> Cadastro de Usuários </title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="js/jquery.js"></script>
         <script>
@@ -121,9 +121,6 @@
 
     </head>
 
-    <body>
-
-
         <div id="containermodal">
             <img src="img/imgphp/trash.png" alt="Excluir" class='Excluir'>
          
@@ -138,62 +135,52 @@
 
         <div id="cadastro"> 
             <div id="cadastroTitulo"> 
-                <h1> Cadastro de Livros </h1>
+                <h1> Cadastro de Usuários </h1>
             </div>
             <div id="cadastroInformacoes">
                                
-                <form action="<?=$action?>" name="frmCadastro" method="post" enctype="multipart/form-data" >
+                <form action="<?=$action?>" name="frmCadastro" method="post" >
                    
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
-                            <label> Nome do Livro: </label>
+                            <label> Nome: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtNome" value="<?=$nome_livro?>" placeholder="Digite seu Nome" maxlength="100">
+                            <input type="text" name="txtNome" value="<?=$nome?>" placeholder="Digite seu Nome" maxlength="100">
                         </div>
                     </div>
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
-                            <label> Autor: </label>
+                            <label> NickName: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtNickName" value="<?=$qts_de_pag?>">
+                            <input type="text" name="txtNickName" value="<?=$nickName?>">
                         </div>
                     </div>
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
-                            <label> Ano de Publicação: </label>
+                            <label> Login: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtLogin" value="<?=$capa_dura?>">
+                            <input type="text" name="txtLogin" value="<?=$login?>">
                         </div>
                     </div>
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
-                            <label> Preço: </label>
+                            <label> Senha: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtSenha" value="<?=$preco?>" maxlength="20">
+                            <input type="password" name="txtSenha" value="<?=$senha?>" maxlength="20">
                         </div>
                     </div>
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
-                            <label> Categoria: </label>
+                            <label> Email: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtEmail" value="<?=$categoria?>">
+                            <input type="email" name="txtEmail" value="<?=$email?>">
                         </div>
                     </div>
-                    
-                    <div class="campos">
-                        <div class="cadastroInformacoesPessoais">
-                            <label> Foto: </label>
-                        </div>
-                        <div class="cadastroEntradaDeDados">
-                            <input type="file" name="fleFoto" accept="image/jpeg, image/png, image/jpg">
-                        </div>
-                    </div>
-
                     <div class="enviar">
                         <div class="enviar">
                             <input type="submit" name="btnEnviar" value="Salvar">
@@ -206,21 +193,19 @@
             <table id="tblConsulta" >
                 <tr>
                     <td id="tblTitulo" colspan="5">
-                        <h1> Lista de Livros</h1>
+                        <h1> Lista de Usuários</h1>
                     </td>
                 </tr>
                 <tr id="tblLinhas">
                     <td class="tblColunas destaque"> Nome </td>
-                    <td class="tblColunas destaque"> Categoria </td>
-                    <td class="tblColunas destaque"> Preço </td>
-                    <td class="tblColunas destaque"> Foto </td>
+                    <td class="tblColunas destaque"> NickName </td>
+                    <td class="tblColunas destaque"> Login </td>
                     <td class="tblColunas destaque"> Opções </td>
-                    
                 </tr>
                 
                <?php 
                     //Script para listar os dados do BD
-                    $sql = "select * from livros order by id_livro desc";
+                    $sql = "select * from tblusuario order by idUsuario desc";
 
                     //Executa no BD o script e guarda o retorno na variavel $select
                     $select = mysqli_query($conexao, $sql);
@@ -230,18 +215,14 @@
                     {
                     ?>
                         <tr id="tblLinhas">
-                            <td class="tblColunas registros"><?=$arrayUsuarios['nome_livro']?></td>
-                            <td class="tblColunas registros"><?=$arrayUsuarios['categoria']?></td>
-                            <td class="tblColunas registros"><?=$arrayUsuarios['preco']?></td>
+                            <td class="tblColunas registros"><?=$arrayUsuarios['nome']?></td>
+                            <td class="tblColunas registros"><?=$arrayUsuarios['nickname']?></td>
+                            <td class="tblColunas registros"><?=$arrayUsuarios['login']?></td>
                             <td class="tblColunas registros">
-                                <img src="arquivos/<?=$arrayUsuarios['foto']?>" class='foto'></td>
-                           
-                          
-                            <td class="tblColunas registros">
-                                <a href="form.php?modo=editar&id=<?=$arrayUsuarios['id_livro']?>">
+                                <a href="index.php?modo=editar&id=<?=$arrayUsuarios['idusuario']?>">
                                     <img src="img/imgphp/edit.png" alt="Editar" title="Editar" class="editar">
                                 </a>
-                                <a onclick="return confirm('Deseja realmnte excluir?');" href="bd/excluirUsuario.php?modo=excluir&id=<?=$arrayUsuarios['id_livro']?>">
+                                <a onclick="return confirm('Deseja realmnte excluir?');" href="bd2/excluirUsuario.php?modo=excluir&id=<?=$arrayUsuarios['idusuario']?>">
                                     <img src="img/imgphp/trash.png" alt="Excluir" title="Excluir" class="excluir">
                                 </a>
                                 <img src="img/imgphp/search.png" alt="Visualizar" title="Visualizar" class="pesquisar">

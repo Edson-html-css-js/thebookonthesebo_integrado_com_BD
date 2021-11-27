@@ -13,7 +13,7 @@
     $host = (string) "localhost";
     $user = (string) "root";
     $password = (string) "052647lucas";
-    $database = (string) "bd_thei";
+    $database = (string) "dbprojetofecaf";
     $conexao = (string) null;
 
 

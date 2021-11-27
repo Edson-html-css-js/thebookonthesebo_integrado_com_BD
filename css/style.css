@@ -22,7 +22,7 @@ body, h1, p{
 #cadastroTitulo{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    background-color: dodgerblue;
+    background-color: rgb(173, 151, 151);
     width: auto;
     height: 120px;
     text-align: center;
@@ -91,7 +91,7 @@ input[type=email]:hover{
 .enviar input{
     width: 150px;
     height: 50px;
-    background-color: dodgerblue;
+    background-color: rgb(165, 125, 125);
     color: white;
     margin-top: 30px;
     font-size: 1.2em;
@@ -126,13 +126,13 @@ input[type=email]:hover{
 }
 #tblConsulta{
     width: 100%;
-    min-height: 30px;
+    min-height: 70px;
     height: auto;
 }
 #tblTitulo{
     width: 100%;
-    height: 30px;
-    background-color: dodgerblue;
+    height: 10px;
+    background-color: rgb(146, 117, 117);
     color: white;
     text-align: center;
     font-size: 1.6em;
@@ -143,7 +143,7 @@ input[type=email]:hover{
     border: solid 1px black;
 }
 .tblColunas{
-    width: 50px;
+    width: 90px;
     height: 30px;
     text-align: center;
     background-color: darkseagreen;
@@ -253,4 +253,29 @@ header {
     right: 0px;
     top: 0;
     padding: 10px 40px ;
+}
+
+
+
+
+#containermodal{
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+#modal{
+
+    width: 500px;
+    height: 300px;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 30vh;
+}
+
+.foto{
+    width: 100px;
+    height: 100px;
 }

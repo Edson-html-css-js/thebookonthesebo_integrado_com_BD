@@ -11,7 +11,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 const REGISTRO_SALVO = "<script>
                                 alert('Registro salvo com sucesso no banco de Dados!');
-                                window.location.href = '../form.php';
+                                window.location.href = '../index.php';
                         </script> ";
 
 
@@ -25,12 +25,10 @@ const ERRO_BD = "<script>
 
 const REGISTRO_EXCLUIDO = "<script>
              alert('Registro Excluido com sucesso do Banco de Dados!');
-             window.location.href = '../form.php';
+             window.location.href = '../index.php';
              </script> ";
 
 
 
 ?>
-
-
 
